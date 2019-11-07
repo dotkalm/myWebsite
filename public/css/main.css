@@ -1,0 +1,29 @@
+body{
+    background-image: linear-gradient(to top right, orange, black, brown, darkGreen, darkGray);
+}
+.email{
+	font-size: 2rem;
+	margin: 2rem;
+}
+.big{
+	margin: 2rem;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.sqContainer{
+    width:100%;
+
+}
+.lilPixels{
+    height:5rem;
+    width:100%;
+}
+
+#notice{
+    display: inline;
+    color: red;
+
+}
