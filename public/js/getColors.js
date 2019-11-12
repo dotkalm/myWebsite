@@ -1,9 +1,16 @@
+let amount = {}
+const divDimensions = (amount) => {
+    const single = amount * .3
+    const size = 2/single
+    return size
+}
 const getColor = (props, description) => {
     const bodyMain = document.querySelector('.big')
     const colorsRaw = props.split(/\n/)
     colorsRaw.pop()
     const wholeContainer = document.createElement("div")
     wholeContainer.setAttribute('class', `${description}`)
+    wholeContainer.style.height = "50rem"
     const squareContainer = document.createElement("div")
     squareContainer.setAttribute('class', `${description}Columns`)
     squareContainer.style.display="grid"
@@ -60,16 +67,17 @@ const getColor = (props, description) => {
                         g: g,
                         b: b
                     }) 
+                   const columnsWide = workingArray.length 
                    const stringForGradient = workingArray.map(e => {
                         return `rgb(${e.r},${e.g},${e.b})`
                    }) 
-                   elementExists.style.width =".5rem"
+                   elementExists.style.width =`${divDimensions(columnsWide)}rem`
                    elementExists.style.height = "50rem"
                    elementExists.style.backgroundImage = 
                         `linear-gradient(${stringForGradient.join(', ')})` 
                     }
                 } else {
-                    console.log(`column${x}`)
+                    return null
                 }
             }
               })
@@ -78,7 +86,7 @@ const getColor = (props, description) => {
       //      bodyMain.appendChild(clearFix)
     return xDictionary
 }
-const yDictionary = (yDictionary) => {
+const yDictionary = (yDictionary, description) => {
     const newObj = {}
     const newOrientation = yDictionary.map((e,i) => {
         e[`column${i+1}`].forEach((e,i) => {
@@ -105,14 +113,14 @@ const yDictionary = (yDictionary) => {
     return newObj
 }
 
-const orderedDictionary = (row, id, color) => {
-    //console.log(row)
+const orderedDictionary = (row, id, color, numberOfRows, itemi) => {
     const findDiv = document.querySelector(`.rowsFor${id}`)
     const cycleThruEachRow = (row) => {
         const gradientStringArray = []
         row.forEach((e,i) => {
             gradientStringArray.push(`rgb(${e.r},${e.g},${e.b})`) 
         })
+        rowsTotal = gradientStringArray.length
         return `linear-gradient(to right, ${gradientStringArray.join(', ')})` 
     }
     if(findDiv == null){
@@ -122,27 +130,24 @@ const orderedDictionary = (row, id, color) => {
         makeDiv.setAttribute('class', `rowsFor${id}`)
         makeDiv.style.display="grid"
         const bodyMain = document.querySelector(`.${id}`)
-       // console.log(row) 
         makeDiv.style.height = "50rem"
         makeDiv.style.transform = "translateY(-50rem)"
         divRow.style.backgroundImage = cycleThruEachRow(row) 
-        divRow.style.height = ".5rem"
+        divRow.style.height = `${divDimensions(numberOfRows)}rem`
         makeDiv.appendChild(divRow)
-        bodyMain.style.height = "50rem"
-        bodyMain.style.backgroundColor = color
+        bodyMain.style.transform = `translateY(-${itemi*25}rem)`
+        //bodyMain.style.backgroundColor = color
         bodyMain.appendChild(makeDiv)
-       // console.log(cycleThruEachRow(row))
 
     }else{
-        //console.log(row)
         const divRow = document.createElement("div")
         divRow.setAttribute('class', `row${row[0].row}`)
         divRow.style.backgroundImage = cycleThruEachRow(row) 
-        divRow.style.height = ".5rem"
+        divRow.style.height = `${divDimensions(numberOfRows)}rem`
         divRow.style.gridRow = row[0]
 
         findDiv.appendChild(divRow)
-        //
     }
 } 
+
 

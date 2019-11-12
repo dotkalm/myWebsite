@@ -1,6 +1,6 @@
 config = {
     locateFile: (filename, prefix) => {
-      console.log(`prefix is : ${prefix}`);
+    //  console.log(`prefix is : ${prefix}`);
       return `../dist/${filename}`;
     }
   }
@@ -20,27 +20,24 @@ config = {
             const newDiv = document.createElement("div")
             const letsSee = []
             const namesArray = []
-            contents[0].values.forEach(e =>{ 
-                console.log(e)
+            contents[0].values.reverse().forEach((e,itemi) =>{ 
                 const color = `rgba(${e[4]},${e[5]},${e[6]},.75)`
                 const newObj = async (colorString, description) => {
                     const newObjAwait = await getColor(colorString, description) 
-                    //console.log(newObjAwait)
                     const rowsDiv = document.createElement("div")
                     rowsDiv.setAttribute('class', `${e[9]}`)
                     //rowsDiv.style.height = "50rem"
-
-                    const rowObj = yDictionary(newObjAwait)
-                    //     console.log(rowObj)
+                    const rowObj = yDictionary(newObjAwait, description)
                     Object.keys(rowObj).forEach((ee,ii) => {
-                        orderedDictionary(rowObj[ee], description, color)
+                        const numberOfRows = Object.keys(rowObj).length
+                        orderedDictionary(rowObj[ee], 
+                            description, color, numberOfRows, itemi)
                     })
 
                 }
                 newObj(e[3], e[9])
             })
             letsSee.forEach((e,i,array) => {
-                console.log(array)
                 const newObj = yDictionary(e) 
                 const rowsDiv = document.createElement("div")
                 rowsDiv.setAttribute('class', `${namesArray[i]}`)
@@ -56,3 +53,4 @@ config = {
 	xhr.send();
 
   });
+
