@@ -2,16 +2,21 @@ body{
     background-image: linear-gradient(to top right, orange, black, brown, darkGreen, darkGray);
 }
 .email{
-	font-size: 2rem;
-	margin: 2rem;
+    font-size: 2rem;
+    margin: 2rem;
+}
+.bigger{
+   height: 100%; 
 }
 .big{
-	margin: 2rem;
-}
+    ##width: 60%;
+    height: 130%;
+    margin: auto;
+    }
 .clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
+    content: "";
+    clear: both;
+    display: table;
 }
 .sqContainer{
     width:100%;
@@ -27,3 +32,4 @@ body{
     color: red;
 
 }
+

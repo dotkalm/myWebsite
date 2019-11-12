@@ -30,6 +30,7 @@ config = {
                     const rowObj = yDictionary(newObjAwait, description)
                     Object.keys(rowObj).forEach((ee,ii) => {
                         const numberOfRows = Object.keys(rowObj).length
+                  //      console.log(numberOfRows)
                         orderedDictionary(rowObj[ee], 
                             description, color, numberOfRows, itemi)
                     })
