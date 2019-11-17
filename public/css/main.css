@@ -32,4 +32,7 @@ body{
     color: red;
 
 }
-
+.quote{
+font-size: 13rem;
+transform: translateY(-135rem)
+}
